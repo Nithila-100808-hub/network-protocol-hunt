@@ -1,8 +1,3 @@
-Create Comprehensive README for Network Protocol Hunt Project
-Markdown
-Copy
-Code
-Preview
 # 🔐 Network Protocol Hunt
 
 > A professional cybersecurity dashboard for exploring network protocols, analyzing packets, and understanding fundamental networking concepts.
