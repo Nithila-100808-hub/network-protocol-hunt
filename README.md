@@ -320,11 +320,3 @@ You are free to:
 ✅ Modify and extend the code for learning
 ✅ Share with classmates and peers for educational discussion
 Please provide appropriate attribution if redistributing publicly.
-🙏 Acknowledgments
-Wireshark® is a trademark of the Wireshark Foundation
-Protocol information sourced from IETF RFCs and industry-standard networking documentation
-Color palette inspired by modern cybersecurity dashboards and terminal themes
-"The only truly secure system is one that is powered off, cast in a block of concrete and sealed in a lead-lined room with armed guards."
-— Gene Spafford
-plain
-High demand. Switched to K2.6 Instant for speed. Upgrade to use K2.6 Thinking.
