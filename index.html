@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Protocol Hunt | Cybersecurity Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+        <h1>Network Protocol Hunt</h1>
+      </div>
+      <nav class="nav">
+        <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+        <button class="nav-btn" data-section="wireshark">Wireshark</button>
+        <button class="nav-btn" data-section="analyzer">Packet Analyzer</button>
+        <button class="nav-btn" data-section="comparison">HTTP vs HTTPS</button>
+      </nav>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search protocols...">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Dashboard Section -->
+      <section id="dashboard" class="section active">
+        <div class="hero">
+          <h2>Cybersecurity Protocol Explorer</h2>
+          <p>Explore network protocols, analyze packets, and understand cybersecurity fundamentals</p>
+          <div class="stats">
+            <div class="stat-card">
+              <span class="stat-number">8</span>
+              <span class="stat-label">Protocols</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">Ports Covered</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Educational</span>
+            </div>
+          </div>
+        </div>
+        <div class="protocols-grid" id="protocolsGrid"></div>
+      </section>
+
+      <!-- Protocol Detail Modal -->
+      <div id="protocolModal" class="modal">
+        <div class="modal-content">
+          <button class="modal-close">&times;</button>
+          <div id="modalBody"></div>
+        </div>
+      </div>
+
+      <!-- Wireshark Section -->
+      <section id="wireshark" class="section">
+        <h2 class="section-title">Wireshark Overview</h2>
+        <div class="wireshark-content">
+          <div class="wireshark-card">
+            <h3>What is Wireshark?</h3>
+            <p>Wireshark is the world's foremost and widely-used network protocol analyzer. It lets you see what's happening on your network at a microscopic level.</p>
+            <ul>
+              <li>Open-source packet analyzer</li>
+              <li>Cross-platform (Windows, macOS, Linux)</li>
+              <li>Deep inspection of hundreds of protocols</li>
+              <li>Live capture and offline analysis</li>
+            </ul>
+          </div>
+          <div class="wireshark-card">
+            <h3>How Packet Capture Works</h3>
+            <div class="capture-steps">
+              <div class="step">
+                <span class="step-num">1</span>
+                <span>Select network interface</span>
+              </div>
+              <div class="step">
+                <span class="step-num">2</span>
+                <span>Start live capture</span>
+              </div>
+              <div class="step">
+                <span class="step-num">3</span>
+                <span>Apply display filters</span>
+              </div>
+              <div class="step">
+                <span class="step-num">4</span>
+                <span>Analyze packet details</span>
+              </div>
+            </div>
+          </div>
+          <div class="wireshark-card full-width">
+            <h3>Common Wireshark Filters</h3>
+            <div class="filters-table-wrapper">
+              <table class="filters-table">
+                <thead>
+                  <tr><th>Filter</th><th>Description</th><th>Example</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>ip.addr == x.x.x.x</code></td><td>Filter by IP address</td><td><code>ip.addr == 192.168.1.1</code></td></tr>
+                  <tr><td><code>tcp.port == 80</code></td><td>Filter by TCP port</td><td><code>tcp.port == 443</code></td></tr>
+                  <tr><td><code>dns</code></td><td>Show only DNS packets</td><td><code>dns</code></td></tr>
+                  <tr><td><code>http</code></td><td>Show only HTTP packets</td><td><code>http</code></td></tr>
+                  <tr><td><code>ssl || tls</code></td><td>Show TLS/SSL traffic</td><td><code>tls</code></td></tr>
+                  <tr><td><code>icmp</code></td><td>Show ICMP (ping) packets</td><td><code>icmp</code></td></tr>
+                  <tr><td><code>frame.len > 1000</code></td><td>Filter by packet size</td><td><code>frame.len > 500</code></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="wireshark-card full-width">
+            <h3>Example Packet Information</h3>
+            <div class="packet-example">
+              <div class="packet-layer">
+                <span class="layer-name">Frame 1:</span>
+                <span class="layer-info">74 bytes on wire (592 bits), 74 bytes captured</span>
+              </div>
+              <div class="packet-layer">
+                <span class="layer-name">Ethernet II:</span>
+                <span class="layer-info">Src: 00:1a:2b:3c:4d:5e, Dst: 00:5e:4d:3c:2b:1a</span>
+              </div>
+              <div class="packet-layer">
+                <span class="layer-name">Internet Protocol:</span>
+                <span class="layer-info">Src: 192.168.1.100, Dst: 142.250.185.68</span>
+              </div>
+              <div class="packet-layer">
+                <span class="layer-name">Transmission Control Protocol:</span>
+                <span class="layer-info">Src Port: 54321, Dst Port: 443, Seq: 0, Len: 0</span>
+              </div>
+              <div class="packet-layer">
+                <span class="layer-name">TLSv1.3:</span>
+                <span class="layer-info">Client Hello</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Packet Analyzer Section -->
+      <section id="analyzer" class="section">
+        <h2 class="section-title">Fake Packet Analyzer</h2>
+        <div class="analyzer-controls">
+          <button id="startScanBtn" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+            Start Scan
+          </button>
+          <button id="clearScanBtn" class="btn-secondary">Clear</button>
+          <div class="scan-status" id="scanStatus">Ready to scan</div>
+        </div>
+        <div class="packet-table-wrapper">
+          <table class="packet-table" id="packetTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Source IP</th>
+                <th>Destination IP</th>
+                <th>Protocol</th>
+                <th>Port</th>
+                <th>Size</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="packetTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Comparison Section -->
+      <section id="comparison" class="section">
+        <h2 class="section-title">HTTP vs HTTPS Comparison</h2>
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th class="http-col">HTTP</th>
+                <th class="https-col">HTTPS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Full Form</strong></td>
+                <td>HyperText Transfer Protocol</td>
+                <td>HyperText Transfer Protocol Secure</td>
+              </tr>
+              <tr>
+                <td><strong>Default Port</strong></td>
+                <td>80</td>
+                <td>443</td>
+              </tr>
+              <tr>
+                <td><strong>Security</strong></td>
+                <td class="risk">Not Secure - Plain text</td>
+                <td class="safe">Secure - Encrypted with TLS/SSL</td>
+              </tr>
+              <tr>
+                <td><strong>Encryption</strong></td>
+                <td>No encryption</td>
+                <td>Uses SSL/TLS encryption</td>
+              </tr>
+              <tr>
+                <td><strong>Certificate</strong></td>
+                <td>No certificate required</td>
+                <td>Requires SSL certificate</td>
+              </tr>
+              <tr>
+                <td><strong>SEO Ranking</strong></td>
+                <td>Lower ranking</td>
+                <td>Higher ranking (Google preference)</td>
+              </tr>
+              <tr>
+                <td><strong>Speed</strong></td>
+                <td>Faster (no encryption overhead)</td>
+                <td>Slightly slower (encryption overhead)</td>
+              </tr>
+              <tr>
+                <td><strong>Use Case</strong></td>
+                <td>Internal networks, testing</td>
+                <td>Production websites, e-commerce</td>
+              </tr>
+              <tr>
+                <td><strong>URL Prefix</strong></td>
+                <td><code>http://</code></td>
+                <td><code>https://</code></td>
+              </tr>
+              <tr>
+                <td><strong>Vulnerability</strong></td>
+                <td>Man-in-the-middle attacks, eavesdropping</td>
+                <td>Protected against MITM attacks</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="comparison-visual">
+          <div class="flow http-flow">
+            <h4>HTTP Flow</h4>
+            <div class="flow-step">Client <span class="arrow">→</span> Plain Text <span class="arrow">→</span> Server</div>
+            <div class="flow-note">Data is visible to anyone intercepting the connection</div>
+          </div>
+          <div class="flow https-flow">
+            <h4>HTTPS Flow</h4>
+            <div class="flow-step">Client <span class="arrow">→</span> TLS Handshake <span class="arrow">→</span> Encrypted Data <span class="arrow">→</span> Server</div>
+            <div class="flow-note">Data is encrypted and cannot be read by attackers</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Network Protocol Hunt - Cybersecurity Mini Project</p>
+      <p>Built with HTML, CSS & JavaScript | No frameworks</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
